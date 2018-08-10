@@ -1,0 +1,50 @@
+/* Roboto fonts */
+
+@font-face {
+  font-family: 'roboto';
+  font-style: normal;
+  font-weight: 100;
+  src: url(/common/fonts/roboto/Roboto-Thin.woff2) format('woff2'),
+       url(/common/fonts/roboto/Roboto-Thin.woff) format('woff'),
+       url(/common/fonts/roboto/Roboto-Thin.otf) format('opentype');
+}
+@font-face {
+  font-family: 'roboto';
+  font-style: normal;
+  font-weight: 300;
+  src: url(/common/fonts/roboto/Roboto-Light.woff2) format('woff2'),
+       url(/common/fonts/roboto/Roboto-Light.woff) format('woff'),
+       url(/common/fonts/roboto/Roboto-Light.otf) format('opentype');
+}
+@font-face {
+   font-family: 'roboto';
+   font-style: normal;
+   font-weight: 400;
+   src: url(/common/fonts/roboto/Roboto-Regular.woff2) format('woff2'),
+        url(/common/fonts/roboto/Roboto-Regular.woff) format('woff'),
+        url(/common/fonts/roboto/Roboto-Regular.otf) format('opentype');
+ }
+@font-face {
+   font-family: 'roboto';
+   font-style: normal;
+   font-weight: 500;
+   src: url(/common/fonts/roboto/Roboto-Medium.woff2) format('woff2'),
+        url(/common/fonts/roboto/Roboto-Medium.woff) format('woff'),
+        url(/common/fonts/roboto/Roboto-Medium.otf) format('opentype');
+ }
+@font-face {
+   font-family: 'roboto';
+   font-style: normal;
+   font-weight: 700;
+   src: url(/common/fonts/roboto/Roboto-Bold.woff2) format('woff2'),
+        url(/common/fonts/roboto/Roboto-Bold.woff) format('woff'),
+        url(/common/fonts/roboto/Roboto-Bold.otf) format('opentype');
+ }
+@font-face {
+   font-family: 'roboto';
+   font-style: normal;
+   font-weight: 900;
+   src: url(/common/fonts/roboto/Roboto-Black.woff2) format('woff2'),
+        url(/common/fonts/roboto/Roboto-Black.woff) format('woff'),
+        url(/common/fonts/roboto/Roboto-Black.otf) format('opentype');
+ }

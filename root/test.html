@@ -1,0 +1,378 @@
+<!doctype html>
+<html lang="ko">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>SiKyung HomePage</title>
+	<script src="./common/js/jquery/1/min/jquery.min.js"></script>
+	<script src="./common/js/moment/moment.min.js"></script>
+	<script src="./common/js/underscore.min.js"></script>
+	<script src="./common/js/language_info.js"></script>
+	<link rel="stylesheet" href="./common/css/common.css?<?=date('Ymdhi')?>">
+	<style type="text/css">
+		@import url("http://fonts.googleapis.com/earlyaccess/notosanskr.css");
+		#all_wrap, #wrap{ width:100%; height:100%; position:relative; }
+		#header, #content, #footer{ width:100%; position:relative; overflow:hidden; }
+		#header{ height:100vh; }
+		#content{ height:auto; }
+		#footer{ height:100px; background:yellow; }
+
+		#header>.header_wrap{ background:transparent; }
+		#header>.header_wrap>div{ width:100%; min-width:600px; position:relative; }
+		#header>.header_wrap>div.header_top>div.header_user{ height:35px; }
+		#header>.header_wrap>div.header_top>div.header_cate{ height:65px; }
+		#header>.header_wrap>div.header_top>div>ul{ text-align:center; vertical-align:middle; overflow:hidden; clear:both; }
+		#header>.header_wrap>div.header_top>div.header_user>ul{ text-align:right; padding:3px 10px 0 0; height:29px; }
+		#header>.header_wrap>div.header_top>div.header_user>ul>li{ display:inline-block; height:100%; }
+
+		#header>.header_wrap>div.header_top>div.header_user>ul>li>a{ display:inline-block; font-size:8pt; font-weight:bold; padding:6px 8px; }
+		#header>.header_wrap>div.header_top>div.header_cate>ul{ width:100%; height:65px; }
+		#header>.header_wrap>div.header_top>div.header_cate>ul>li{ float:left; width:20%; height:100%; line-height:65px; }
+		#header>.header_wrap>div.header_top>div.header_cate>ul>li>a{
+			font-size:13pt;
+			font-weight:bold;
+			display:inline-block;
+			position:relative;
+			padding:0px 10px;
+		}
+		#header>.header_wrap>div.header_top>div.header_cate>ul>li.normal>a:hover::before{
+			content:"";
+			display:block;
+			position:absolute;
+			width:100%;
+			height:5px;
+			bottom:0;
+			left:0px;
+			border-bottom:3px solid #800080;
+		}
+		#header>.header_wrap>div.header_slideImg{
+			position:relative; top:-100px; 
+		}
+		#header>.header_wrap>div.header_slideImg>div.img_list{
+			background-position:center center;
+			background-repeat: no-repeat;
+			background-size:100% 100%;
+			width:100vw;
+			height:100vh;
+		}
+		#header>.header_wrap>div.header_top{
+			z-index:99;
+		}
+
+		a:hover{ color:#800080; } 
+
+		#header>.header_wrap.fixed{
+			background:#fff;
+		}
+		#header>.header_wrap>div>ul.fixed{
+			border-bottom:1px solid #EAEAEA;
+		}
+		#content>#content_wrap{
+			margin:0 5%;
+			height:550px;
+			position:relative;
+			min-width:1000px;
+		}
+
+		#content>#content_wrap>.content_list{
+			width:33.33%;
+			height:550px;
+			position:absolute;
+		}
+		#content>#content_wrap>.content_list::after{
+			content:"";
+			width:0px;
+			height:480px;
+			position:absolute;
+			top:35px;
+			right:0;
+			border-left:1px solid silver;
+		}
+		#content>#content_wrap>.content_list:last-of-type::after{
+			content:"";
+			width:0px;
+			height:0px;
+		}
+		#content>#content_wrap>.content_list:nth-of-type(1){
+			top:0; left:0;
+		}
+		#content>#content_wrap>.content_list:nth-of-type(2){
+			top:0; left:33.33%;
+		}
+		#content>#content_wrap>.content_list:nth-of-type(3){
+			top:0; left:66.66%;
+		}
+		#content>#content_wrap>.content_list>h2{
+			width:100%;
+			height:50px;
+			line-height:55px;
+			padding-left:15px;
+			font-weight:bold;
+			font-size:13pt;
+			position:relative;
+		}
+		#content>#content_wrap>.content_list>span{
+			position:absolute;
+			top:16px;
+			right:15px;
+			width:20px;
+			height:20px;
+			text-indent:-9999px;
+			background-image:url("./common/img/icon/plus_squre.png");
+			background-position:center center;
+			background-repeat: no-repeat;
+			background-size:100% 100%;
+		}
+		#content>#content_wrap>.content_list>ul>li{
+			width:100%;
+			height:100px;
+		}
+		#content>#content_wrap>.content_list>ul>li>a{
+			display:inline-block;
+			position:relative;
+			width:100%;
+			height:100%;
+		}
+		#content>#content_wrap>.content_list>ul>li>a:hover{
+			background:rgba(155,155,155,0.3);
+		}
+		#content>#content_wrap>.content_list>ul>li>a>.img_wrap{
+			width:82px;			
+			height:82px;
+			position:absolute;
+			top:9px; left:9px;
+			background:#fff;
+			text-align:center;
+		}
+		#content>#content_wrap>.content_list>ul>li>a>.img_wrap>img{ width:auto; height:100%; }
+		#content>#content_wrap>.content_list>ul>li>a>.content_wrap{
+			height:100%;
+			padding:0px 10px 9px 100px;
+			margin-top:9px;
+		}
+		#content>#content_wrap>.content_list>ul.singer>li>a>.content_wrap{
+			padding:9px 10px;
+		}
+		#content>#content_wrap>.content_list>ul>li>a>.content_wrap>h4{
+			height:20px;
+			line-height:20px;
+			font-weight:bold;
+			font-size:10pt;
+			margin-bottom:2px;
+			white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+		}
+		#content>#content_wrap>.content_list>ul>li>a>.content_wrap>p{
+			font-size:9pt;
+			height:60px;
+			overflow: hidden; text-overflow: ellipsis;
+		}
+	</style>
+</head>
+<body>
+	<script>
+		var country_info = 0;
+		try{
+			country_info = {'kor':0, 'eng':1, 'jap':2}[localstorage.getItem('sikyung_lang')];
+		} catch(e) {
+			country_info = 0;
+		}
+	</script>
+	<div id='all_wrap'>
+		<div id='wrap'>
+			<div id='header'>
+				<div class='header_wrap'>
+					<div class='header_top'>
+						<div class='header_user'>
+							<ul>
+								<!-- <li><a href='javascript:void(0)'><script>language_info['login'][country_info]</script></a></li>
+								<li><a href='javascript:void(0)'><script>language_info['join'][country_info]</script></a></li>
+								<li><a href='javascript:void(0)'><script>language_info['language'][country_info]</script></a></li> -->
+								<li><a href='javascript:void(0)'>Login</a></li>
+								<li><a href='javascript:void(0)'>Join</a></li>
+								<li><a href='javascript:void(0)'>Language</a></li>
+							</ul>
+						</div><!-- end div.header_user -->
+						<div class='header_cate'> 
+							<ul class='header_list'>
+								<li class='normal'>
+									<a href='javascript:void(0)'>About</a>
+								</li>
+								<li class='normal'>
+									<a href='javascript:void(0)'>Sung Si Kyung</a>
+								</li>
+								<li>
+									<a href='javascript:void(0)'>Purple Ocean</a>
+								</li>
+								<li class='normal'>
+									<a href='javascript:void(0)'>Board</a>
+								</li>
+								<li class='normal'>
+									<a href='javascript:void(0)'>Purple Member</a>
+								</li>
+							</ul>
+						</div><!-- end div.header_cate -->
+					</div><!-- end div.header_top -->
+					<div class='header_slideImg'>
+						<div class='img_list' style='background-image:url("./common/img/list1.jpg")'></div>
+					</div><!-- end div.header_cate -->
+				</div><!-- end div.header_wrap -->
+			</div><!-- end div#header -->
+
+			<div id='content'>
+				<div id='content_wrap'>
+					<div class="content_list">
+						<h2>Today's News</h2>
+						<span>더보기</span>
+						<ul class="new_list news">
+							<li>
+								<a href="javascript:void:(0)">
+									<div class="img_wrap"><img src="./common/img/img_list/img1.png"></div>
+									<div class="content_wrap">
+										<h4>'성발라'성시경, 싸이 콘서트 등장 감미로운 여름밤</h4>
+										<p>[엑스포츠뉴스 박소현 기자] 가수 성시경이 싸이 콘서트의 게스트로 등장했다. 싸이와 성시경은 함께 '뜨거운 안녕'을...</p>
+									</div>
+								</a>
+							</li>
+							<li>
+								<a href="javascript:void:(0)">
+									<div class="img_wrap"><img src="./common/img/img_list/img1.png"></div>
+									<div class="content_wrap">
+										<h4>'성발라'성시경, 싸이 콘서트 등장 감미로운 여름밤</h4>
+										<p>[엑스포츠뉴스 박소현 기자] 가수 성시경이 싸이 콘서트의 게스트로 등장했다. 싸이와 성시경은 함께 '뜨거운 안녕'을...</p>
+									</div>
+								</a>
+							</li>
+							<li>
+								<a href="javascript:void:(0)">
+									<div class="img_wrap"><img src="./common/img/img_list/img1.png"></div>
+									<div class="content_wrap">
+										<h4>'성발라'성시경, 싸이 콘서트 등장 감미로운 여름밤</h4>
+										<p>[엑스포츠뉴스 박소현 기자] 가수 성시경이 싸이 콘서트의 게스트로 등장했다. 싸이와 성시경은 함께 '뜨거운 안녕'을...</p>
+									</div>
+								</a>
+							</li>
+							<li>
+								<a href="javascript:void:(0)">
+									<div class="img_wrap"><img src="./common/img/img_list/img1.png"></div>
+									<div class="content_wrap">
+										<h4>'성발라'성시경, 싸이 콘서트 등장 감미로운 여름밤</h4>
+										<p>[엑스포츠뉴스 박소현 기자] 가수 성시경이 싸이 콘서트의 게스트로 등장했다. 싸이와 성시경은 함께 '뜨거운 안녕'을...</p>
+									</div>
+								</a>
+							</li>
+							<li>
+								<a href="javascript:void:(0)">
+									<div class="img_wrap"><img src="./common/img/img_list/img1.png"></div>
+									<div class="content_wrap">
+										<h4>'성발라'성시경, 싸이 콘서트 등장 감미로운 여름밤</h4>
+										<p>[엑스포츠뉴스 박소현 기자] 가수 성시경이 싸이 콘서트의 게스트로 등장했다. 싸이와 성시경은 함께 '뜨거운 안녕'을...</p>
+									</div>
+								</a>
+							</li>
+						</ul>
+					</div>
+					<div class="content_list">
+						<h2>From SiKyung</h2>
+						<span>더보기</span>
+						<ul class="new_list singer">
+							<li>
+								<a href="javascript:void:(0)">
+									<div class="content_wrap">
+										<h4>그대들의 2018 무더위는 어때요? - 1</h4>
+										<p>지난주에는 싸이씨 콘서트에 다녀왔어요.. 너무 더운데 그분들을 보자니 저도 그런 콘서트 한번 열어야겠다는 생각이 드네요.. 피해보상 신고 안 하실거죠?...</p>
+									</div>
+								</a>
+							</li>
+							<li>
+								<a href="javascript:void:(0)">
+									<div class="content_wrap">
+										<h4>그대들의 2018 무더위는 어때요? - 2</h4>
+										<p>지난주에는 싸이씨 콘서트에 다녀왔어요.. 너무 더운데 그분들을 보자니 저도 그런 콘서트 한번 열어야겠다는 생각이 드네요.. 피해보상 신고 안 하실거죠?...</p>
+									</div>
+								</a>
+							</li>
+							<li>
+								<a href="javascript:void:(0)">
+									<div class="content_wrap">
+										<h4>그대들의 2018 무더위는 어때요? -3</h4>
+										<p>지난주에는 싸이씨 콘서트에 다녀왔어요.. 너무 더운데 그분들을 보자니 저도 그런 콘서트 한번 열어야겠다는 생각이 드네요.. 피해보상 신고 안 하실거죠?...</p>
+									</div>
+								</a>
+							</li>
+							<li>
+								<a href="javascript:void:(0)">
+									<div class="content_wrap">
+										<h4>그대들의 2018 무더위는 어때요? - 4</h4>
+										<p>지난주에는 싸이씨 콘서트에 다녀왔어요.. 너무 더운데 그분들을 보자니 저도 그런 콘서트 한번 열어야겠다는 생각이 드네요.. 피해보상 신고 안 하실거죠?...</p>
+									</div>
+								</a>
+							</li>
+							<li>
+								<a href="javascript:void:(0)">
+									<div class="content_wrap">
+										<h4>그대들의 2018 무더위는 어때요? - 5</h4>
+										<p>지난주에는 싸이씨 콘서트에 다녀왔어요.. 너무 더운데 그분들을 보자니 저도 그런 콘서트 한번 열어야겠다는 생각이 드네요.. 피해보상 신고 안 하실거죠?...</p>
+									</div>
+								</a>
+							</li>
+						</ul>
+					</div>
+					<div class="content_list">
+						<h2>Notice</h2>
+						<span>더보기</span>
+						<ul class="new_list notice">
+							<li>
+								<a href="javascript:void:(0)">
+									<div class="img_wrap"><img src="./common/img/img_list/img1.png"></div>
+									<div class="content_wrap">
+										<h4>'성발라'성시경, 싸이 콘서트 등장 감미로운 여름밤</h4>
+										<p>[엑스포츠뉴스 박소현 기자] 가수 성시경이 싸이 콘서트의 게스트로 등장했다. 싸이와 성시경은 함께 '뜨거운 안녕'을...</p>
+									</div>
+								</a>
+							</li>
+							<li>
+								<a href="javascript:void:(0)">
+									<div class="img_wrap"><img src="./common/img/img_list/img1.png"></div>
+									<div class="content_wrap">
+										<h4>'성발라'성시경, 싸이 콘서트 등장 감미로운 여름밤</h4>
+										<p>[엑스포츠뉴스 박소현 기자] 가수 성시경이 싸이 콘서트의 게스트로 등장했다. 싸이와 성시경은 함께 '뜨거운 안녕'을...</p>
+									</div>
+								</a>
+							</li>
+							<li>
+								<a href="javascript:void:(0)">
+									<div class="img_wrap"><img src="./common/img/img_list/img1.png"></div>
+									<div class="content_wrap">
+										<h4>'성발라'성시경, 싸이 콘서트 등장 감미로운 여름밤</h4>
+										<p>[엑스포츠뉴스 박소현 기자] 가수 성시경이 싸이 콘서트의 게스트로 등장했다. 싸이와 성시경은 함께 '뜨거운 안녕'을...</p>
+									</div>
+								</a>
+							</li>
+							<li>
+								<a href="javascript:void:(0)">
+									<div class="img_wrap"><img src="./common/img/img_list/img1.png"></div>
+									<div class="content_wrap">
+										<h4>'성발라'성시경, 싸이 콘서트 등장 감미로운 여름밤</h4>
+										<p>[엑스포츠뉴스 박소현 기자] 가수 성시경이 싸이 콘서트의 게스트로 등장했다. 싸이와 성시경은 함께 '뜨거운 안녕'을...</p>
+									</div>
+								</a>
+							</li>
+							<li>
+								<a href="javascript:void:(0)">
+									<div class="img_wrap"><img src="./common/img/img_list/img1.png"></div>
+									<div class="content_wrap">
+										<h4>'성발라'성시경, 싸이 콘서트 등장 감미로운 여름밤</h4>
+										<p>[엑스포츠뉴스 박소현 기자] 가수 성시경이 싸이 콘서트의 게스트로 등장했다. 싸이와 성시경은 함께 '뜨거운 안녕'을...</p>
+									</div>
+								</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div><!-- end div#content -->
+
+			<div id='footer'>
+			</div><!-- end div#footer -->
+		</div><!-- end div#wrap -->
+	</div><!-- end div#all_wrap -->
+</body>
+</html>
